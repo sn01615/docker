@@ -1,4 +1,4 @@
-FROM php:7.1-fpm
+FROM php:8.1-fpm
 
 RUN apt-get update && apt-get install -y \
     libfreetype6-dev \
@@ -15,10 +15,10 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
 RUN pecl install redis solr \
     && docker-php-ext-enable redis solr
 
-RUN pecl install mongodb-1.4.4 \
-    && docker-php-ext-enable mongodb
+#RUN pecl install mongodb-1.4.4 \
+#    && docker-php-ext-enable mongodb
 
-RUN pecl install xdebug-2.9.8 \
+RUN pecl install xdebug \
     && docker-php-ext-enable xdebug
 
 WORKDIR /var/www/php

@@ -1,0 +1,35 @@
+services:
+  nginx:
+    build: "./nginx"
+#    restart: always
+    ports:
+      - 8033:80
+      - 8043:443
+    volumes:
+      - '../:/var/www/php'
+      - './nginx/nginx.conf:/etc/nginx/nginx.conf'
+      - './nginx/conf.d:/etc/nginx/conf.d'
+      - './nginx/logs:/var/log/nginx'
+      - './php-fpm/sock:/var/tmp/php-fpm'
+    depends_on:
+      - php-fpm
+      - redis
+  php-fpm:
+    build: "./php-fpm"
+#    restart: always
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - '../:/var/www/php'
+      - './php-fpm/etc/php/php.ini:/usr/local/etc/php/php.ini'
+      - './php-fpm/etc/php-fpm.d/www.conf:/usr/local/etc/php-fpm.d/www.conf'
+      - './php-fpm/etc/php-fpm.conf:/usr/local/etc/php-fpm.conf'
+      - './supervisor:/etc/supervisor'
+      - './php-fpm/sock:/var/tmp/php-fpm'
+    ports:
+      - 33012:39001
+    depends_on:
+      - redis
+  redis:
+    image: "redis:7.0"
+#    restart: always

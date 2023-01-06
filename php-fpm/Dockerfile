@@ -28,6 +28,7 @@ RUN dnf update -y && dnf install -y wget bzip2 gcc gcc-c++ libxml2-devel sqlite-
 #    && pecl clear-cache
 RUN pecl install xdebug-3.1.6 \
     && pecl clear-cache
+RUN dnf install -y zip
 
 WORKDIR /var/www/php
 EXPOSE 39001

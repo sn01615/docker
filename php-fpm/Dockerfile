@@ -28,7 +28,10 @@ RUN cd /usr/src && tar jxf php-7.1.33.tar.bz2 && cd /usr/src/php-7.1.33 \
 RUN pecl channel-update pecl.php.net \
     && pecl install redis solr mongodb-1.4.4 imagick-3.5.1 \
 #    && pecl install mcrypt \
-    && pecl install xdebug-2.9.8 \
+#    && pecl install xdebug-2.9.8 \
+    && pecl clear-cache
+
+RUN pecl install xdebug-2.9.8 \
     && pecl clear-cache
 
 WORKDIR /var/www/php

@@ -14,7 +14,7 @@ RUN cd /usr/src && tar jxf php-7.1.33.tar.bz2 && cd /usr/src/php-7.1.33 \
     && ./configure --prefix=/usr/local --with-config-file-path=/usr/local/etc/php --with-mysqli --with-pdo-mysql \
         --enable-mbstring --enable-fpm --with-gd --with-curl \
         --with-openssl --with-freetype-dir --with-zlib --with-jpeg-dir --with-png-dir --with-xpm-dir --enable-pcntl \
-        --with-gmp --enable-zip --enable-bcmath --enable-sockets \
+        --with-gmp --enable-zip --enable-bcmath --enable-sockets --with-mcrypt \
     && make && make install \
     && git clone https://github.com/nrk/phpiredis.git \
     && cd phpiredis \
@@ -26,7 +26,7 @@ RUN cd /usr/src && tar jxf php-7.1.33.tar.bz2 && cd /usr/src/php-7.1.33 \
     && dnf clean all
 
 RUN pecl channel-update pecl.php.net \
-    && pecl install redis solr mongodb imagick-3.5.1 \
+    && pecl install redis solr mongodb-1.4.4 imagick-3.5.1 \
 #    && pecl install mcrypt \
     && pecl install xdebug-2.9.8 \
     && pecl clear-cache

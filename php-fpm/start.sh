@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
-chown www-data:www-data -R /var/www/php/runtime
-chown www-data:www-data -R /var/www/php/data
-chown www-data:www-data -R /var/www/php/public/plugins/
-chown www-data:www-data -R /var/www/php/public/themes/
-chown www-data:www-data -R /var/www/php/public/upload/
+chown www-data:www-data -R /var/www/php/storage
 cd /var/www/php && echo ...
 #if [ ! -f '/var/www/php/composer' ]; then
 #    echo "rm MY-docker-php-ext-xdebug.ini"
